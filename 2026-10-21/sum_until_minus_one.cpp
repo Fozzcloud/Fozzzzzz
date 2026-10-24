@@ -9,8 +9,8 @@ int main (){
 		sum+=num;
 		count+=1;
 	}
-	printf("总和是：%d\n",sum);
-	printf("个数是:%d\n",count);
+	printf("脳脺潞脥脢脟拢潞%d\n",sum);
+	printf("赂枚脢媒脢脟:%d\n",count);
 	
 	return 0;
 }
