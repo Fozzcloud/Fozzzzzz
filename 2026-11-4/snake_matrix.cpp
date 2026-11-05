@@ -1,47 +1,29 @@
 #include<stdio.h>
+int N[15][15]={0};
 int main(){
 	int n;scanf("%d",&n);
-	int N[n][n];
-	int q=0;int w=0;//顺着蛇形推进并记录
-	int in=1;
-	for(int w=0;w<n;w++){
-		N[0][w]=in;
-		in++;
-	}
-	int t=n-1;//每两次同方向推进后推进距离减1
-	while(N[q][w]<n*n){
-		for(int i=0;i<=1;i++){//循环两次每两次同方向推进距离相同
-			for(int i=0;i<t;i++){
-				q++;N[q][w]=in;in++;
-			}
-			t-=1;
+	int turn=0;
+	int turny[4]={0,1,0,-1};//鍙筹紝涓嬶紝宸︼紝涓婃墍瀵瑰簲鐨剎 y浣嶇Щ鍙樺寲
+	int turnx[4]={1,0,-1,0};
+	int x=0,y=0;
+	N[0][0]=1;
+	for(int i=2;i<=n*n;i++){
+		int willx=x+turnx[turn];
+		int willy=y+turny[turn];
+		if(willx>=n||willy>=n||willx<0||willy<0||N[willy][willx]!=0){
+			turn=(turn+1)%4;//0->1 1->2 2->3 3->0;
 		}
-		for(int i=0;i<=1;i++){
-			for(int i=0;i<t;i++){
-				w--;N[q][w]=in;in++;
-			}
-			t-=1;
-		}
-		for(int i=0;i<=1;i++){
-			for(int i=0;i<t;i++){
-				q--;N[q][w]=in;in++;
-			}
-			t-=1;
-		}	
-		for(int i=0;i<=1;i++){
-			for(int i=0;i<t;i++){
-			    w++;N[q][w]=in;in++;
-			}
-			t-=1;
-		}	
+		x+=turnx[turn];
+		y+=turny[turn];
+		N[y][x]=i;
 	}
+	
 	for(int i=0;i<n;i++){
 		for(int j=0;j<n;j++){
 			printf("%3d",N[i][j]);
 		}
 		printf("\n");
 	}
-	
 	
 	return 0;
 }
